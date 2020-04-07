@@ -1,4 +1,4 @@
-package com.generationc20.cards;
+package com.generationc20.EasyDoctor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

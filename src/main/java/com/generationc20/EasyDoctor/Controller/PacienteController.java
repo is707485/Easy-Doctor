@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.generationc20.EasyDoctor.Service.HistorialClinicoService;
+import com.generationc20.EasyDoctor.Service.HistorialFamiliarService;
+import com.generationc20.EasyDoctor.Service.HistorialNoClinicoService;
+import com.generationc20.EasyDoctor.Service.HistorialSexualService;
 import com.generationc20.EasyDoctor.Service.PacienteService;
 import com.generationc20.EasyDoctor.model.HistorialClinico;
 import com.generationc20.EasyDoctor.model.HistorialFamiliar;
@@ -27,6 +31,14 @@ public class PacienteController {
 
 	@Autowired
 	private PacienteService service;
+	@Autowired
+	private HistorialFamiliarService histoFService;
+	@Autowired
+	private HistorialClinicoService histoCService;
+	@Autowired
+	private HistorialNoClinicoService histoNCService;
+	@Autowired
+	private HistorialSexualService histSService;
 	
 	@GetMapping
 	public ResponseEntity<List<Paciente>> getAll(){
@@ -41,20 +53,20 @@ public class PacienteController {
 		return new ResponseEntity<>(service.getById(id).get(),HttpStatus.OK);
 	}
 	@PostMapping("/{id}/histoFam")
-	public ResponseEntity<HistorialFamiliar> crearhf(@PathVariable("idPaciente")Integer idPaciente,@RequestBody HistorialFamiliar hF){
-		return new ResponseEntity<>(service.crearhF(idPaciente, hF),HttpStatus.CREATED);
+	public ResponseEntity<HistorialFamiliar> crearhf(@PathVariable("id")Integer id,@RequestBody HistorialFamiliar hF){
+		return new ResponseEntity<>(histoFService .crear(id, hF),HttpStatus.CREATED);
 	}
 	@PostMapping("/{id}/histoClin")
-	public ResponseEntity<HistorialClinico> crearhC(@PathVariable("idPaciente")Integer idPaciente,@RequestBody HistorialClinico hC){
-		return new ResponseEntity<>(service.crearhC(idPaciente, hC),HttpStatus.CREATED);
+	public ResponseEntity<HistorialClinico> crearhC(@PathVariable("id")Integer id,@RequestBody HistorialClinico hC){
+		return new ResponseEntity<>(histoCService.crear(id, hC),HttpStatus.CREATED);
 	}
 	@PostMapping("/{id}/histoNoClin")
-	public ResponseEntity<HistorialNoClinico> crearhNC(@PathVariable("idPaciente")Integer idPaciente,@RequestBody HistorialNoClinico hNC){
-		return new ResponseEntity<>(service.crearhNC(idPaciente, hNC),HttpStatus.CREATED);
+	public ResponseEntity<HistorialNoClinico> crearhNC(@PathVariable("id")Integer id,@RequestBody HistorialNoClinico hNC){
+		return new ResponseEntity<>(histoNCService.cerar(id, hNC),HttpStatus.CREATED);
 	}
 	@PostMapping("/{id}/histoSex")
-	public ResponseEntity<HistorialSexual> crearhS(@PathVariable("idPaciente")Integer idPaciente,@RequestBody HistorialSexual hS){
-		return new ResponseEntity<>(service.crearhS(idPaciente, hS),HttpStatus.CREATED);
+	public ResponseEntity<HistorialSexual> crearhS(@PathVariable("id")Integer id,@RequestBody HistorialSexual hS){
+		return new ResponseEntity<>(histSService.crear(id, hS),HttpStatus.CREATED);
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<Paciente> updata(@PathVariable("id")Integer id, @RequestBody Paciente paciente){
@@ -62,6 +74,7 @@ public class PacienteController {
 	}
 	@DeleteMapping
 	public ResponseEntity<Void> delate(@PathVariable("id")Integer id){
+		service.delate(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

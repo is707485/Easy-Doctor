@@ -1,12 +1,17 @@
 package com.generationc20.EasyDoctor.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,6 +51,22 @@ public class Paciente {
 	private String ocupacion;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
+	
+	@OneToMany(targetEntity = HistorialClinico.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+	@JoinColumn(name="idPaciente",referencedColumnName = "id")
+	private List<HistorialClinico> HC;
+	
+	@OneToMany(targetEntity= HistorialFamiliar.class, cascade = CascadeType.ALL,fetch= FetchType.LAZY, orphanRemoval=true)
+	@JoinColumn(name="idPaciente",referencedColumnName = "id")
+	private List<HistorialFamiliar> HF;
+	
+	@OneToMany(targetEntity=HistorialSexual.class,cascade = CascadeType.ALL,fetch= FetchType.LAZY, orphanRemoval=true)
+	@JoinColumn(name="idPaciente",referencedColumnName = "id")
+	private List<HistorialSexual> HS;
+	
+	@OneToMany(targetEntity= HistorialNoClinico.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval = true)
+	@JoinColumn(name="idPaciente",referencedColumnName="id")
+	private List<HistorialNoClinico> HNC;
 	
 	public Paciente() {}
 
@@ -167,6 +188,38 @@ public class Paciente {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public List<HistorialClinico> getHC() {
+		return HC;
+	}
+
+	public void setHC(List<HistorialClinico> hC) {
+		HC = hC;
+	}
+
+	public List<HistorialFamiliar> getHF() {
+		return HF;
+	}
+
+	public void setHF(List<HistorialFamiliar> hF) {
+		HF = hF;
+	}
+
+	public List<HistorialSexual> getHS() {
+		return HS;
+	}
+
+	public void setHS(List<HistorialSexual> hS) {
+		HS = hS;
+	}
+
+	public List<HistorialNoClinico> getHNC() {
+		return HNC;
+	}
+
+	public void setHNC(List<HistorialNoClinico> hNC) {
+		HNC = hNC;
 	}
 	
 	

@@ -18,7 +18,8 @@ public class HistorialClinico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+	private Integer idPaciente;
+
 	@Column(length=50)
 	private String medico;
 	private String traumas;
@@ -95,7 +96,13 @@ public class HistorialClinico {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+	public Integer getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(Integer idPaciente) {
+		this.idPaciente = idPaciente;
+	}
 	
 	
 

@@ -17,6 +17,7 @@ public class HistorialNoClinico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Integer idPaciente;
 	
 	private String actividadfisica;
 	private String vacunas;
@@ -74,6 +75,14 @@ public class HistorialNoClinico {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public Integer getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(Integer idPaciente) {
+		this.idPaciente = idPaciente;
 	}
 	
 	

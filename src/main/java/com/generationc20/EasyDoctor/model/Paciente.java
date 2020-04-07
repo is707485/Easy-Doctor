@@ -54,19 +54,19 @@ public class Paciente {
 	
 	@OneToMany(targetEntity = HistorialClinico.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
 	@JoinColumn(name="idPaciente",referencedColumnName = "id")
-	private List<HistorialClinico> HC;
+	private List<HistorialClinico> hC;
 	
 	@OneToMany(targetEntity= HistorialFamiliar.class, cascade = CascadeType.ALL,fetch= FetchType.LAZY, orphanRemoval=true)
 	@JoinColumn(name="idPaciente",referencedColumnName = "id")
-	private List<HistorialFamiliar> HF;
+	private List<HistorialFamiliar> hF;
 	
 	@OneToMany(targetEntity=HistorialSexual.class,cascade = CascadeType.ALL,fetch= FetchType.LAZY, orphanRemoval=true)
 	@JoinColumn(name="idPaciente",referencedColumnName = "id")
-	private List<HistorialSexual> HS;
+	private List<HistorialSexual> hS;
 	
 	@OneToMany(targetEntity= HistorialNoClinico.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval = true)
 	@JoinColumn(name="idPaciente",referencedColumnName="id")
-	private List<HistorialNoClinico> HNC;
+	private List<HistorialNoClinico> hNC;
 	
 	public Paciente() {}
 
@@ -190,36 +190,36 @@ public class Paciente {
 		this.fecha = fecha;
 	}
 
-	public List<HistorialClinico> getHC() {
-		return HC;
+	public List<HistorialClinico> gethC() {
+		return hC;
 	}
 
-	public void setHC(List<HistorialClinico> hC) {
-		HC = hC;
+	public void sethC(List<HistorialClinico> hC) {
+		this.hC = hC;
 	}
 
-	public List<HistorialFamiliar> getHF() {
-		return HF;
+	public List<HistorialFamiliar> gethF() {
+		return hF;
 	}
 
-	public void setHF(List<HistorialFamiliar> hF) {
-		HF = hF;
+	public void sethF(List<HistorialFamiliar> hF) {
+		this.hF = hF;
 	}
 
-	public List<HistorialSexual> getHS() {
-		return HS;
+	public List<HistorialSexual> gethS() {
+		return hS;
 	}
 
-	public void setHS(List<HistorialSexual> hS) {
-		HS = hS;
+	public void sethS(List<HistorialSexual> hS) {
+		this.hS = hS;
 	}
 
-	public List<HistorialNoClinico> getHNC() {
-		return HNC;
+	public List<HistorialNoClinico> gethNC() {
+		return hNC;
 	}
 
-	public void setHNC(List<HistorialNoClinico> hNC) {
-		HNC = hNC;
+	public void sethNC(List<HistorialNoClinico> hNC) {
+		this.hNC = hNC;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,10 +41,12 @@ public class PacienteController {
 	@Autowired
 	private HistorialSexualService histSService;
 	
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Paciente>> getAll(){
 		return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
 	}
+	@CrossOrigin
 	@PostMapping 
 	public ResponseEntity<Paciente> crear(@RequestBody Paciente paciente){
 		return new ResponseEntity<>(service.crearPaciente(paciente),HttpStatus.CREATED);
@@ -51,6 +54,10 @@ public class PacienteController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Paciente> getById(@PathVariable("id") Integer id){
 		return new ResponseEntity<>(service.getById(id).get(),HttpStatus.OK);
+	}
+	@GetMapping("/nombre/{nombre}")
+	public ResponseEntity<List<Paciente>> getByName(@PathVariable("nombre")String nombre){
+		return new ResponseEntity<>(service.getByName(nombre),HttpStatus.OK);
 	}
 	@PostMapping("/{id}/histoFam")
 	public ResponseEntity<HistorialFamiliar> crearhf(@PathVariable("id")Integer id,@RequestBody HistorialFamiliar hF){

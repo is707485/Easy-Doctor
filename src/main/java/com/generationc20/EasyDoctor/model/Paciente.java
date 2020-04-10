@@ -68,7 +68,40 @@ public class Paciente {
 	@JoinColumn(name="idPaciente",referencedColumnName="id")
 	private List<HistorialNoClinico> hNC;
 	
+	@OneToMany(targetEntity= PacienteAlergia.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval = true)
+	@JoinColumn(name="idPaciente",referencedColumnName="id")
+	private List<PacienteAlergia> pacienteAlergia;
+	
+	public Paciente(Integer id,  String nombre, String apellido, String fechaNacimiento, String curp,
+			String telefono, String movil, String email, String sexo, String tipoSangre, String nacionalidad,
+			String religion, String escolaridad, String ocupacion, Date fecha, List<HistorialClinico> hC,
+			List<HistorialFamiliar> hF, List<HistorialSexual> hS, List<HistorialNoClinico> hNC, List<PacienteAlergia> pacienteAlergia) {
+		
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNacimiento;
+		this.curp = curp;
+		this.telefono = telefono;
+		this.movil = movil;
+		this.email = email;
+		this.sexo = sexo;
+		this.tipoSangre = tipoSangre;
+		this.nacionalidad = nacionalidad;
+		this.religion = religion;
+		this.escolaridad = escolaridad;
+		this.ocupacion = ocupacion;
+		this.fecha = fecha;
+		this.hC = hC;
+		this.hF = hF;
+		this.hS = hS;
+		this.hNC = hNC;
+		this.pacienteAlergia = pacienteAlergia;
+	}
+
+
 	public Paciente() {}
+
 
 	public Integer getId() {
 		return id;
@@ -221,6 +254,19 @@ public class Paciente {
 	public void sethNC(List<HistorialNoClinico> hNC) {
 		this.hNC = hNC;
 	}
+
+
+	public List<PacienteAlergia> getPacienteAlergia() {
+		return pacienteAlergia;
+	}
+
+
+	public void setPacienteAlergia(List<PacienteAlergia> pacienteAlergia) {
+		this.pacienteAlergia = pacienteAlergia;
+	}
+
+
+	
 	
 	
 	

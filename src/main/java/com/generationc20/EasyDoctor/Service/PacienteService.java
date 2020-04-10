@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 
+import com.generationc20.EasyDoctor.model.Alergia;
 import com.generationc20.EasyDoctor.model.HistorialClinico;
 import com.generationc20.EasyDoctor.model.HistorialFamiliar;
 import com.generationc20.EasyDoctor.model.HistorialNoClinico;
@@ -19,6 +20,7 @@ public interface PacienteService {
 	HistorialFamiliar crearhF(Integer idPaciente,HistorialFamiliar hF);
 	HistorialNoClinico crearhNC(Integer idPaciente,HistorialNoClinico hNC);
 	HistorialSexual crearhS(Integer idPaciente,HistorialSexual hS);
+	Alergia crearA(Integer idPaciente,Alergia alergia);
 	List<Paciente> getByName(String nombre);
 	Optional<Paciente> getById(Integer id);
 	Paciente updata(Integer id,Paciente paciente);

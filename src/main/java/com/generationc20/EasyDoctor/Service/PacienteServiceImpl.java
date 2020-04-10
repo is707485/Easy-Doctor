@@ -7,11 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.generationc20.EasyDoctor.Respository.AlergiaRepository;
 import com.generationc20.EasyDoctor.Respository.HistorialClinicoRepository;
 import com.generationc20.EasyDoctor.Respository.HistorialFamiliarRepository;
 import com.generationc20.EasyDoctor.Respository.HistorialNoClinicoRepository;
 import com.generationc20.EasyDoctor.Respository.HistorialSexualRepository;
 import com.generationc20.EasyDoctor.Respository.PacienteRespository;
+import com.generationc20.EasyDoctor.model.Alergia;
 import com.generationc20.EasyDoctor.model.HistorialClinico;
 import com.generationc20.EasyDoctor.model.HistorialFamiliar;
 import com.generationc20.EasyDoctor.model.HistorialNoClinico;
@@ -35,6 +37,8 @@ public class PacienteServiceImpl implements PacienteService{
 	
 	@Autowired
 	private HistorialSexualRepository sRepository;
+	@Autowired
+	private AlergiaRepository aRepository;
 	
 	@Override
 	public Paciente crearPaciente(Paciente paciente) {
@@ -46,6 +50,12 @@ public class PacienteServiceImpl implements PacienteService{
 		hC.setIdPaciente(idPaciente);
 		hC.setFecha(new Date());
 		return cRepository.save(hC);
+	}
+	@Override
+	public Alergia crearA(Integer idPaciente, Alergia alergia) {
+		
+		alergia.setFecha(new Date());
+		return aRepository.save(alergia);
 	}
 	@Override
 	public HistorialFamiliar crearhF(Integer idPaciente, HistorialFamiliar hF) {

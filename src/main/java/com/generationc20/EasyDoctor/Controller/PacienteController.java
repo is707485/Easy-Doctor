@@ -72,9 +72,10 @@ public class PacienteController {
 	public ResponseEntity<HistorialFamiliar> crearhf(@PathVariable("id")Integer id,@RequestBody HistorialFamiliar hF){
 		return new ResponseEntity<>(histoFService .crear(id, hF),HttpStatus.CREATED);
 	}
-	@PostMapping("/{id}/alergia")
-	public ResponseEntity<Alergia> crearA(@PathVariable("id")Integer idPaciente,@RequestBody Alergia alergia){
-		Alergia alergiaFinish=aService.save(alergia);
+	@PostMapping("/{id}/alergia/{idMedicamento}")
+	public ResponseEntity<Alergia> crearA(@PathVariable("idMedicamento")Integer id,@PathVariable("id")Integer idPaciente,
+			@RequestBody Alergia alergia){
+		Alergia alergiaFinish=aService.save(id,alergia);
 		Integer idAlergia=alergiaFinish.getId();
 		PacienteAlergia pA=new PacienteAlergia();
 		paServise.crear(idPaciente, idAlergia, pA);

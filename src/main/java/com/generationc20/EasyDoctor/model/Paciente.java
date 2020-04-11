@@ -72,6 +72,13 @@ public class Paciente {
 	@JoinColumn(name="idPaciente",referencedColumnName="id")
 	private List<PacienteAlergia> pacienteAlergia;
 	
+	@OneToMany(targetEntity= Cita.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval = true)
+	@JoinColumn(name="idPaciente",referencedColumnName="id")
+	private List<Cita> cita;
+	
+	
+
+
 	public Paciente(Integer id,  String nombre, String apellido, String fechaNacimiento, String curp,
 			String telefono, String movil, String email, String sexo, String tipoSangre, String nacionalidad,
 			String religion, String escolaridad, String ocupacion, Date fecha, List<HistorialClinico> hC,
@@ -99,6 +106,14 @@ public class Paciente {
 		this.pacienteAlergia = pacienteAlergia;
 	}
 
+	public List<Cita> getCita() {
+		return cita;
+	}
+
+
+	public void setCita(List<Cita> cita) {
+		this.cita = cita;
+	}
 
 	public Paciente() {}
 

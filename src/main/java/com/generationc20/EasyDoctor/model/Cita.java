@@ -18,6 +18,7 @@ public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Integer idPaciente;
 	
 	@Column(length=20)
 	private String salaConsulta;
@@ -30,6 +31,14 @@ public class Cita {
 	private Date fecha;
 
 	public Cita() {}
+
+	public Integer getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(Integer idPaciente) {
+		this.idPaciente = idPaciente;
+	}
 
 	public Integer getId() {
 		return id;

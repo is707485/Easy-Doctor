@@ -6,7 +6,7 @@ import com.generationc20.EasyDoctor.model.Alergia;
 
 public interface AlergiaService {
 	
-	Alergia save(Alergia alergia);
+	Alergia save(Integer idMedicamento,Alergia alergia);
 	List<Alergia> getAll();
 
 }

@@ -16,7 +16,8 @@ public class AlergiaServiceImpl implements AlergiaService {
 	private AlergiaRepository repository;
 	
 	@Override
-	public Alergia save(Alergia alergia) {
+	public Alergia save(Integer idMedicamento,Alergia alergia) {
+		alergia.setIdMedicamento(idMedicamento);
 		alergia.setFecha(new Date());
 		return repository.save(alergia);
 	}

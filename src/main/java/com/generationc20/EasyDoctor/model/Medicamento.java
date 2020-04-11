@@ -17,27 +17,28 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="alergia")
-public class Alergia {
+@Table(name="medicamento")
+public class Medicamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer idMedicamento;
 	
-	@Column(length=50)
+	@Column(length=70)
 	private String nombre;
-	private String otro;
+	private String Formula;
+	@Column(length=10)
+	private String gramage;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 	
-	@OneToMany(targetEntity = PacienteAlergia.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
-	@JoinColumn(name="idAlergia",referencedColumnName="id")
-	private List<PacienteAlergia> alegiaPaciente;
+	@OneToMany(targetEntity= Alergia.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY,orphanRemoval = true)
+	@JoinColumn(name="idMedicamento",referencedColumnName="id")
+	private List<Alergia> alergias;
 	
-	public Alergia(){
-	}
+	public Medicamento() {}
+
 
 	public Integer getId() {
 		return id;
@@ -55,20 +56,20 @@ public class Alergia {
 		this.nombre = nombre;
 	}
 
-	public String getOtro() {
-		return otro;
+	public String getFormula() {
+		return Formula;
 	}
 
-	public void setOtro(String otro) {
-		this.otro = otro;
+	public void setFormula(String formula) {
+		Formula = formula;
 	}
 
-	public List<PacienteAlergia> getAlegiaPaciente() {
-		return alegiaPaciente;
+	public String getGramage() {
+		return gramage;
 	}
 
-	public void setAlegiaPaciente(List<PacienteAlergia> alegiaPaciente) {
-		this.alegiaPaciente = alegiaPaciente;
+	public void setGramage(String gramage) {
+		this.gramage = gramage;
 	}
 
 	public Date getFecha() {
@@ -79,14 +80,14 @@ public class Alergia {
 		this.fecha = fecha;
 	}
 
-	public Integer getIdMedicamento() {
-		return idMedicamento;
-	}
 
-	public void setIdMedicamento(Integer idMedicamento) {
-		this.idMedicamento = idMedicamento;
+	public List<Alergia> getAlergias() {
+		return alergias;
 	}
 
 
-	
+	public void setAlergias(List<Alergia> alergias) {
+		this.alergias = alergias;
+	}
+
 }

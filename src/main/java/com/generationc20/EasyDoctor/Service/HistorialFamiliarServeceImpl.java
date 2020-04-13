@@ -40,6 +40,7 @@ public class HistorialFamiliarServeceImpl implements HistorialFamiliarService{
 	}
 	@Override
 	public void delate(Integer id) {
+		repository.deleteById(id);
 	}
 
 }
